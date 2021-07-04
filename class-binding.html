@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    <div :class="style"> {{message}}</div>
+    <hr>
+    <select class="form-control" v-model="selectedStyle">
+        <option>alert alert-success</option>
+        <option>alert alert-danger</option>
+        <option>alert alert-info</option>
+        <option>alert alert-warning</option>
+    </select>
+    <div :class="selectedStyle"> {{message}}</div>
+    <hr>
+    <button :class="[btnStyle,textStyle]">Submit</button>
+
+    <hr>
+
+    <div class="form-group row">
+        <label for="name">Name</label>
+        <div class="col-sm-8">
+            <input type="text" id="name" v-model="user.name"
+                   :class="{'form-control is-valid':user.name,'form-control is-invalid':!user.name}"
+            >
+            <span>{{user.name.length}}</span>
+        </div>
+    </div>
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            style: 'alert alert-danger',
+            selectedStyle: '',
+            btnStyle: 'btn btn-success',
+            textStyle: 'text-warning',
+            user: {
+                id: 5,
+                name: 'Taha',
+                role: 'Admin'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

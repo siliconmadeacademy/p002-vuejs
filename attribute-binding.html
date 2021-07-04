@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+
+    <a v-bind:href="href" v-bind:title="title">Silicon Academy </a>
+    <hr>
+    <a :href="href" :title="title">Silicon Academy </a>
+    <hr>
+    <div :id="'product-' + id ">{{id}}. Ürün</div>
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            href: 'http://www.siliconmadeacademy.com',
+            title:'Silicon Academy',
+            id:4
+
+        }
+    });
+</script>
+
+</body>
+</html>

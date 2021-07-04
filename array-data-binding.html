@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    {{users}}
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item "
+            v-for="user in users">{{user}}
+        </li>
+    </ul>
+    <hr>
+    <table class="table table-bordered table-hover">
+        <tr class="bg-success text-white">
+            <th>Index</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Role</th>
+        </tr>
+        <tr v-for="(user,index) in users1">
+            <td>{{index}}</td>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+    </table>
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            users: ['Taha', 'Muhammed', 'Baha', 'Melih', 'Jale', 'Aslıhan'],
+            users1: [
+                {
+                    id: 5,
+                    name: 'Taha',
+                    role: 'Admin'
+                },
+                {
+                    id: 6,
+                    name: 'Muhammed',
+                    role: 'Admin'
+                },
+                {
+                    id: 7,
+                    name: 'Baha',
+                    role: 'Admin'
+                },
+                {
+                    id: 8,
+                    name: 'Melih',
+                    role: 'User'
+                },
+                {
+                    id: 9,
+                    name: 'Jale',
+                    role: 'Admin'
+                },
+                {
+                    id: 9,
+                    name: 'Aslıhan',
+                    role: 'User'
+                }
+            ]
+        }
+    });
+</script>
+
+</body>
+</html>

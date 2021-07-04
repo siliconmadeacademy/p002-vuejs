@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    {{message}}
+    <p v-text="name"></p>
+    <p v-html="lastname"></p>
+    <hr>
+    <div class="form-group">
+        <input type="text" class="form-control" v-model="city">
+        {{city}}
+        <hr>
+        <input type="text" class="form-control" v-model.number="kdv">
+        {{kdv * 18 / 100}}
+        <p v-once>  {{(kdv * 18 / 100) <5 ? 'Kdv düşük':'Kdv Yüksek'}}</p>
+        <hr>
+    </div>
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            name: 'gokhan',
+            lastname: '<h2>Yener</h2>',
+            city:'',
+            kdv:100
+        }
+    });
+</script>
+
+</body>
+</html>
