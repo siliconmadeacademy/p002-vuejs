@@ -70,7 +70,7 @@ const app = new Vue({
             $('#newUserModel').modal('show');
             const user = this.users.find(item => item.id === userId)
             if (user !== null) {
-                this.activeUser = user;
+             this.activeUser = Object.assign({}, user);
             }
         },
         update() {

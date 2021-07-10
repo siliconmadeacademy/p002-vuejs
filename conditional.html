@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    {{message}}
+    <div v-if="isVisible">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dicta dolor eos esse
+        incidunt iure magnam molestias provident saepe velit.
+    </div>
+    <input type="text" class="form-control" v-model="name">
+    <span v-if="name.length > 2"> {{name.length}} karakter </span>
+
+    <div v-show="isVisible">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, atque cupiditate
+        distinctio incidunt minima nostrum obcaecati odio placeat quaerat quas.
+    </div>
+    <hr>
+    <button type="button" class="btn btn-warning" @click="showOrHide">Göster/Gizle</button>
+    <hr>
+
+    <select name="" id="" v-model="userType" class="form-control">
+        <option value="">Seçiniz</option>
+        <option value="musteri">Müşteri</option>
+        <option value="yonetici">Yönetici</option>
+    </select>
+    {{userType}}
+    <hr>
+    <div v-if="userType==='musteri'">
+        <h1>Müşteri Bilgileri</h1>
+        <br>...
+    </div>
+    <div v-else-if="userType==='yonetici'">
+        <h1>Yönetici Bilgileri</h1>
+        <br>...
+    </div>
+    <div v-else>
+        <h1>Diğer Bilgileri</h1>
+        <br>...
+    </div>
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            isVisible: false,
+            name: 'Gokhan',
+            userType: ''
+        },
+        methods: {
+            showOrHide() {
+                this.isVisible = !this.isVisible;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
