@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container mt-5">
+    {{message}}
+    <hr>
+    <button type="button" class="btn btn-primary" v-on:click="hello">Hello</button>
+    <button type="button" class="btn btn-primary" @click="hello">Hello</button>
+    <button type="button" class="btn btn-danger" v-on:click="baybay">BayBay</button>
+    <hr>
+
+    <form @submit.prevent>
+
+        <div class="form-group row">
+            <label>Email</label>
+            <input type="text" class="form-control" v-model="email"
+                   v-on:keypress.enter="emailSave">
+        </div>
+
+    </form>
+
+</div>
+
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            email: ''
+        },
+        methods: {
+            hello() {
+                this.message = 'Merhaba Vue';
+            },
+            baybay() {
+                this.message = 'Bay bay Vue';
+            },
+            emailSave() {
+                console.log(this.email)
+                if (this.email !== '') {
+                    this.message = 'Email adresi kaydedildi.'
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

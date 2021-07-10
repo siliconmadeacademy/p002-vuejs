@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container mt-5">
+<div class="row">
+    <div class="col-4">
+        <h1>Users</h1>
+    </div>
+<div class="col-6"></div>
+<div class="col-2">
+    <button type="button" class="btn btn-primary float-right" @click="newUser">+ Add</button>
+
+    <div class="modal fade" id="newUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="recipient-name"
+                            v-model="activeUser.name">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Role:</label>
+                            <select name="" id="" class="form-control"
+                                    v-model="activeUser.role">
+                                <option value="">Seçiniz</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+
+    <hr>
+    <table class="table table-bordered table-hover">
+        <tr class="bg-success text-white">
+            <th>Index</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th style="width: 140px">Action</th>
+        </tr>
+
+        <tr v-for="(user,index) in users">
+            <td>{{index}}</td>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.role}}</td>
+            <td class="float-right">
+                <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
+<script src="../assets/js/vue.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
