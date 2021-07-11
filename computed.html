@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    {{message}}
+    <hr>
+    <input type="text" v-model="name">
+    <hr>
+    <input type="text" v-model="surname">
+    <hr>
+    {{nameSurname}}
+    <hr>
+    <input type="text" v-model="price">
+    {{kdv}}
+    <h1>Computed</h1>
+    {{nameSurname}}
+    {{nameSurname}}
+    {{nameSurname}}
+    <hr>
+    <h1>Method</h1>
+    {{nameSurname3()}}
+    {{nameSurname3()}}
+    {{nameSurname3()}}
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item active" v-for="user in filter_m_name">
+            {{user}}
+        </li>
+    </ul>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item active" v-for="user in users">
+            {{user}}
+        </li>
+    </ul>
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            name: 'gokhan',
+            surname: 'yener',
+            price: 20,
+            users: ['Ali', 'Veli', 'Buğra', 'Melih', 'Jale', 'Semanur', 'Muhammet', 'Mahmut']
+        },
+        methods: {
+            nameSurname3() {
+                console.log('Metot çalıştı');
+                return this.name + ' ' + this.surname;
+            }
+        },
+        computed: {
+            nameSurname() {
+                console.log('Computed çalıştı')
+                return this.name + ' ' + this.surname;
+            },
+            kdv() {
+                return this.price * 18 / 100;
+            },
+            nameSurname2: {
+                get: function () {
+                    return this.name + ' ' + this.surname;
+                },
+                set: function (value) {
+                    let items = value.split(' ');
+                    this.name = items[0];
+                    this.surname = items[1];
+                }
+            },
+            filter_m_name() {
+                return this.users.filter(data => data.startsWith('M'));
+              //  return this.users.filter(data => data.startsWith('M')).sort();
+            }
+
+        }
+    });
+</script>
+
+</body>
+</html>
