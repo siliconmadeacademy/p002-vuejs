@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/toastr.min.css">
+
+</head>
+<body>
+<div id="app" class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 bg-light">
+            <h1>Kullanıcı Kaydı</h1>
+            <div v-if="errors.length > 0">
+                <div class="alert alert-danger" v-for="error in errors">
+                    {{error}}
+                </div>
+            </div>
+            <form action="#" method="post" @submit="save" novalidate>
+                <div class="form-group">
+                    <label for="name">Ad soyad</label>
+                    <input type="text" class="form-control" id="name" v-model="form.nameSurname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" v-model="form.email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" class="form-control" id="password" v-model="form.password">
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm">Şifre Tekrar</label>
+                    <input type="password" class="form-control" id="password_confirm" v-model="form.password_confirm">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Teknoloji" id="defaultCheck1"
+                           v-model="form.interesting">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Teknoloji
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Giyim" id="defaultCheck2"
+                           v-model="form.interesting">
+                    <label class="form-check-label" for="defaultCheck2">
+                        Giyim
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Spor" id="defaultCheck21"
+                           v-model="form.interesting">
+                    <label class="form-check-label" for="defaultCheck2">
+                        Spor
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+
+</div>
+<script src="assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/toastr.min.js"></script>
+<script src="assets/js/vue.js"></script>
+
+
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            form: {
+                nameSurname: '',
+                email: '',
+                password: '',
+                password_confirm: '',
+                interesting: []
+            },
+            errors: [],
+            toasterError: ''
+
+        },
+        methods: {
+            save(e) {
+                e.preventDefault();
+                this.errors = [];
+                if (!this.form.nameSurname) this.errors.push('Ad soyad alanı gereklidir');
+                if (!this.form.email) {
+                    this.errors.push('Email alanı gereklidir');
+                } else if (!this.validEmail(this.form.email)) {
+                    this.errors.push('Gecerli bir email giriniz');
+                }
+                if (!this.form.password) this.errors.push('Şifre alanı gereklidir');
+                if (!this.form.password_confirm) this.errors.push('Şifre Tekrar alanı gereklidir');
+                if (this.form.password !== this.form.password_confirm) this.errors.push('Şifre ve Şifre Tekrar alanı uyuşmamaktadır');
+
+                if (this.errors.length > 0) {
+
+                    this.errors.forEach(item => {
+                        this.toasterError += item + '<br>';
+                    })
+                    toastr.error(this.toasterError);
+                    //    return false;
+                } else {
+                    let msg = 'Veriler Başarıyla kaydedildi...';
+                    toastr.success(msg);
+                    // veritabınına yolla
+                }
+
+
+            },
+            validEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
