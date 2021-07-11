@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container">
+    <div class="col-6">
+        {{message}}
+        Input
+        <input type="text" class="form-control" v-model="user.name" id="test" name="test">
+        {{user.name}}
+        <hr>
+        Textarea
+        <textarea class="form-control" v-model="user.address"></textarea>
+        {{user.address}}
+        <hr>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="user.hobby" value="Muzik">
+            <label class="form-check-label" for="flexCheckDefault">
+                Müzik
+            </label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="user.hobby" value="Resim">
+            <label class="form-check-label" for="flexCheckChecked">
+                Resim
+            </label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="user.hobby" value="Gezi">
+            <label class="form-check-label" for="flexCheckChecked">
+                Gezi
+            </label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="user.hobby" value="Spor">
+            <label class="form-check-label" for="flexCheckChecked">
+                Spor
+            </label>
+        </div>
+        <pre class="form-text text-muted">{{user.hobby}}</pre>
+        <hr>
+        <select class="form-control" v-model="user.role">
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+            <option value="Manager">Manager</option>
+        </select>
+
+        {{user.role}}
+
+        <hr>
+        <select class="form-control" v-model="user.roles" multiple>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+            <option value="Manager">Manager</option>
+        </select>
+
+        {{user.roles}}
+
+        <hr>
+        Bay
+        <input type="radio" v-model="user.gender" value="Bay">
+        <br>
+        Bayan
+        <input type="radio" v-model="user.gender" value="Bayan">
+        <br>
+        {{user.gender}}
+    </div>
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            user: {
+                name: '',
+                address: '',
+                hobby: [],
+                role: '',
+                roles: [],
+                gender: ''
+            }
+
+        }
+    });
+    // document.getElementById('test').value
+    // $('#test').val();
+</script>
+
+</body>
+</html>
