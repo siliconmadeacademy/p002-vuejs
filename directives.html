@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container mt-5">
+    {{message}}
+
+    <div v-alert="'success'">{{title}}</div>
+    <div v-alert="'danger'">{{title}}</div>
+    <div v-bg="{type:'success'}" class="p-2 mt-5 text-info">{{title}}</div>
+    <br>
+    <input type="text" v-model="tarihsaat" class="form-control">
+    <input type="text" v-model="tarihsaat" v-datetime:date="tarihsaat" class="form-control">
+    <input type="text" v-model="tarihsaat" v-datetime:time="tarihsaat" class="form-control">
+
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            title: 'Lorem ipsum dolor sit amet.',
+            tarihsaat: '2021-07-17 10:39:00'
+        },
+        directives: {
+            alert: function (el, binding) {
+                el.setAttribute('class', 'alert alert-' + binding.value)
+            },
+            bg: function (el, binding) {
+                el.setAttribute('class', 'bg-' + binding.value.type)
+            },
+            datetime: function (el, binding) {
+                console.log(binding)
+                if (binding.arg === 'date') {
+                    el.value = new Date(binding.value).toLocaleDateString();
+                  //  el.value = this.revertDate(binding.value);
+                } else {
+                    el.value = new Date(binding.value).toLocaleTimeString();
+                }
+            }
+        },
+        methods:{
+            revertDate(date){
+
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
