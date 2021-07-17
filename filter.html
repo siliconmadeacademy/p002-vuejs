@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+</head>
+<body>
+<div id="app" class="container mt-5">
+    {{message | buyukHarf}} <br>
+    {{message | kucukHarf}} <br>
+    {{message1 | ilkHarfBuyuk}} <br>
+    {{lorem | ilkHarflerBuyuk | terstenYazma}} <br>
+    {{lorem | terstenYazma}} <br>
+    {{lorem | kisaltma(10)}} <br>
+
+    <input type="text" class="form-control" v-model.trim="title"><br>
+    {{title}}
+
+    <input type="text" class="form-control" v-model.number="sayi">
+    {{sayi + sayi}}
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+
+    Vue.filter('kisaltma', function (value, length) {
+        if (value.length < length) {
+            return value;
+        }
+        return value.toString().substr(0, length) + '...';
+    })
+
+
+    Vue.filter('terstenYazma', function (value) {
+        return value.toString().split('').reverse().join('');
+    });
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon academy',
+        data: {
+            message: 'Hello Vue',
+            message1: 'hello vue',
+            lorem: 'Lorem ipsum dolor sit amet. ',
+            title: '',
+            sayi: ''
+        },
+        filters: {
+            buyukHarf(value) {
+                return value.toString().toUpperCase();
+            },
+            kucukHarf(value) {
+                return value.toString().toLowerCase();
+            },
+            ilkHarfBuyuk(value) {
+                return value.toString().charAt(0).toUpperCase() + value.slice(1);
+            },
+            ilkHarflerBuyuk(value) {
+                let kelimeler = value.toString().split(' ');
+                console.log(kelimeler)
+                let sonuc = '';
+                kelimeler.forEach(kelime => {
+                    console.log(kelime)
+                    sonuc += kelime.toString().charAt(0).toUpperCase() + kelime.slice(1) + ' ';
+                })
+                return sonuc;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
